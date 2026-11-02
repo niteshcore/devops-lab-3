@@ -1,0 +1,36 @@
+$ ansible --version
+ansible [core 2.21.5]
+
+$ ansible all -i inventory.ini -m ping
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/usr/local/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.21/reference_appendices/interpreter_discovery.html for more information.
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/local/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+
+$ ansible-playbook -i inventory.ini playbook.yml
+
+PLAY [Configure web server and deploy app] *************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/usr/local/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.21/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost]
+
+TASK [Install nginx] ***********************************************************
+changed: [localhost]
+
+TASK [Deploy index page] *******************************************************
+changed: [localhost]
+
+TASK [Start and enable nginx] **************************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+$ curl -s localhost
+<h1>Deployed by Ansible on localhost</h1>

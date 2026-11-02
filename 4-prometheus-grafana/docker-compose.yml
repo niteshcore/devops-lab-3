@@ -9,4 +9,10 @@ services:
   grafana:
     image: grafana/grafana:latest
     ports: ["3000:3000"]
-    volumes: ["./grafana/datasource.yml:/etc/grafana/provisioning/datasources/ds.yml"]
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    volumes:
+      - ./grafana/datasource.yml:/etc/grafana/provisioning/datasources/ds.yml
+      - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml
+      - ./grafana/dashboards:/var/lib/grafana/dashboards

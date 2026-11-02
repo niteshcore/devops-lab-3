@@ -1,0 +1,2 @@
+health status index              uuid                   pri rep docs.count docs.deleted store.size pri.store.size dataset.size
+yellow open   weblogs-2026.11.02 -FP5hJAtTXiJoZybwSFPaQ   1   1          4            0     53.7kb         53.7kb       53.7kb

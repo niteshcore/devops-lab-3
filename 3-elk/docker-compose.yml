@@ -8,6 +8,9 @@ services:
     ports: ["9200:9200"]
   logstash:
     image: docker.elastic.co/logstash/logstash:8.13.4
+    environment:
+      - pipeline.ecs_compatibility=disabled
+      - xpack.monitoring.enabled=false
     volumes:
       - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
       - ./logstash/sample.log:/logs/sample.log
